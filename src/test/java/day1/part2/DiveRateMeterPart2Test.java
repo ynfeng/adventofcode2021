@@ -9,7 +9,7 @@ import day1.DiveRateMeter;
 import day1.SonarSweep;
 import org.junit.jupiter.api.Test;
 
-class DiveRateMeterTestPart2 {
+class DiveRateMeterPart2Test {
 
     @Test
     void should_report_dive_rate() {
