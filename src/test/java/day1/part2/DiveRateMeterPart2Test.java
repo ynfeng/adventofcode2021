@@ -26,7 +26,6 @@ class DiveRateMeterPart2Test {
             "263"
         ));
         DepthIncreaseReporter depthIncreaseReport = new DepthIncreaseReporter();
-
         DiveRateMeter diveRateMeter = new DiveRateMeter(sonarSweep, depthIncreaseReport);
 
         int diveRate = diveRateMeter.measureDiveRate();
