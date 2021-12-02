@@ -38,7 +38,7 @@ class CommandTest {
 
     @Test
     void should_execute_command() {
-        Submarine submarine = new DefaultSubmarine();
+        Submarine submarine = new NormalSubmarine();
 
         submarine.executeCommand(Command.create("forward 1"));
         submarine.executeCommand(Command.create("forward 1"));
@@ -64,7 +64,7 @@ class CommandTest {
 
     @Test
     void should_get_answer() {
-        Submarine submarine = new DefaultSubmarine();
+        Submarine submarine = new NormalSubmarine();
         Command[] commands = Command.create(Datas.fromResourceAsList("day2/data"));
         Arrays.stream(commands).forEach(submarine::executeCommand);
 

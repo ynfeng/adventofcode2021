@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-class DefaultSubmarineTest {
+class NormalSubmarineTest {
 
     @Test
     void should_forward() {
-        Submarine submarine = new DefaultSubmarine();
+        Submarine submarine = new NormalSubmarine();
 
         assertThat(submarine.forward(5).horizontal()).isEqualTo(5);
         assertThat(submarine.forward(1).horizontal()).isEqualTo(6);
@@ -17,7 +17,7 @@ class DefaultSubmarineTest {
 
     @Test
     void should_down() {
-        Submarine submarine = new DefaultSubmarine();
+        Submarine submarine = new NormalSubmarine();
 
         assertThat(submarine.down(5).depth()).isEqualTo(5);
         assertThat(submarine.down(5).depth()).isEqualTo(10);
@@ -26,7 +26,7 @@ class DefaultSubmarineTest {
 
     @Test
     void should_up() {
-        Submarine submarine = new DefaultSubmarine();
+        Submarine submarine = new NormalSubmarine();
 
         assertThat(submarine.down(5).depth()).isEqualTo(5);
         assertThat(submarine.up(5).depth()).isZero();

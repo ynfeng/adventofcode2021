@@ -1,7 +1,7 @@
 package day2;
 
-public class DefaultSubmarine extends AbstractSubmarine {
-    public DefaultSubmarine() {
+public class NormalSubmarine extends AbstractSubmarine {
+    public NormalSubmarine() {
         super(DefaultPosition.create(0, 0));
     }
 
