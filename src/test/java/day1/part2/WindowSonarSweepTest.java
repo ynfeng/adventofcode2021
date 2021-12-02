@@ -33,7 +33,7 @@ class WindowSonarSweepTest {
     }
 
     @Test
-    void should_0_when_not_enough_measurements() {
+    void should_negative_when_not_enough_measurements() {
         WindowSonarSweep windowSonarSweep = new WindowSonarSweep(Lists.newArrayList(
             "199",
             "200"));
