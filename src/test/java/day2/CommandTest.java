@@ -45,9 +45,8 @@ class CommandTest {
         submarine.executeCommand(Command.create("down 5"));
         submarine.executeCommand(Command.create("up 1"));
 
-        Position position = submarine.position();
-        assertThat(position.horizontal()).isEqualTo(2);
-        assertThat(position.depth()).isEqualTo(4);
+        assertThat(submarine.horizontal()).isEqualTo(2);
+        assertThat(submarine.depth()).isEqualTo(4);
     }
 
     @Test
@@ -69,7 +68,7 @@ class CommandTest {
         Command[] commands = Command.create(Datas.fromResourceAsList("day2/data"));
         Arrays.stream(commands).forEach(submarine::executeCommand);
 
-        Position position = submarine.position();
-        assertThat(position.depth() * position.horizontal()).isEqualTo(1660158);
+        assertThat(submarine.positionTotal()).isEqualTo(1660158);
     }
+
 }

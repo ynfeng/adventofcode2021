@@ -8,12 +8,26 @@ public abstract class AbstractSubmarine implements Submarine {
         command.execute(this);
     }
 
-    @Override
-    public Position position() {
+    protected Position position() {
         return position;
     }
 
     protected void setPosition(Position position) {
         this.position = position;
+    }
+
+    @Override
+    public int horizontal() {
+        return position.horizontal();
+    }
+
+    @Override
+    public int depth() {
+        return position.depth();
+    }
+
+    @Override
+    public int positionTotal() {
+        return position.total();
     }
 }

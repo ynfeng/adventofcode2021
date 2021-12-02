@@ -32,4 +32,8 @@ public class Position {
     public Position up(int val) {
         return create(horizontal, depth - val);
     }
+
+    int total() {
+        return depth() * horizontal();
+    }
 }

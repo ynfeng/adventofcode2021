@@ -1,13 +1,17 @@
 package day2;
 
 public interface Submarine {
-    Position forward(int val);
+    Submarine forward(int val);
 
-    Position down(int val);
+    Submarine down(int val);
 
-    Position up(int val);
+    Submarine up(int val);
+
+    int horizontal();
+
+    int depth();
+
+    int positionTotal();
 
     void executeCommand(Command command);
-
-    Position position();
 }
