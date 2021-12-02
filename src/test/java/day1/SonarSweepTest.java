@@ -3,6 +3,7 @@ package day1;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+import utils.Datas;
 
 class SonarSweepTest {
 

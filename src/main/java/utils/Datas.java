@@ -1,4 +1,4 @@
-package day1;
+package utils;
 
 import com.google.common.io.Resources;
 import java.io.IOException;

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
+import utils.Datas;
 
 class DiveRateMeterTest {
 

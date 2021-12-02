@@ -3,11 +3,11 @@ package day1.part2;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.common.collect.Lists;
-import day1.Datas;
 import day1.DepthIncreaseReporter;
 import day1.DiveRateMeter;
 import day1.SonarSweep;
 import org.junit.jupiter.api.Test;
+import utils.Datas;
 
 class DiveRateMeterPart2Test {
 
