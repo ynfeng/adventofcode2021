@@ -1,7 +1,6 @@
 package day2;
 
 public class Position {
-
     private final int horizontal;
     private final int depth;
 

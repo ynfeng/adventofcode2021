@@ -1,32 +1,13 @@
 package day2;
 
-public class Submarine {
-    private Position position = Position.create(0, 0);
+public interface Submarine {
+    Position forward(int val);
 
-    public Position forward(int val) {
-        position = position.forward(val);
-        return position;
-    }
+    Position down(int val);
 
-    public Position down(int val) {
-        position = position.down(val);
-        return position;
-    }
+    Position up(int val);
 
-    public Position up(int val) {
-        if (position.depth() == 0) {
-            return position;
-        }
+    void executeCommand(Command command);
 
-        position = position.up(val);
-        return position;
-    }
-
-    public void executeCommand(Command command) {
-        command.execute(this);
-    }
-
-    public Position position() {
-        return position;
-    }
+    Position position();
 }
