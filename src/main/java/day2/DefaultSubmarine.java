@@ -2,6 +2,10 @@ package day2;
 
 public class DefaultSubmarine extends AbstractSubmarine {
 
+    public DefaultSubmarine() {
+        super(Position.create(0, 0));
+    }
+
     @Override
     public Submarine forward(int val) {
         setPosition(position().forward(val));

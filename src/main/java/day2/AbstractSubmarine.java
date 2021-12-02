@@ -1,7 +1,11 @@
 package day2;
 
 public abstract class AbstractSubmarine implements Submarine {
-    protected Position position = Position.create(0, 0);
+    private Position position ;
+
+    protected AbstractSubmarine(Position position) {
+        this.position = position;
+    }
 
     @Override
     public void executeCommand(Command command) {

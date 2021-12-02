@@ -5,17 +5,17 @@ import java.util.Arrays;
 public enum Direction {
     FORWARD {
         @Override
-        void execute(Submarine submarine, int distance) {
+        void move(Submarine submarine, int distance) {
             submarine.forward(distance);
         }
     }, UP {
         @Override
-        void execute(Submarine submarine, int distance) {
+        void move(Submarine submarine, int distance) {
             submarine.up(distance);
         }
     }, DOWN {
         @Override
-        void execute(Submarine submarine, int distance) {
+        void move(Submarine submarine, int distance) {
             submarine.down(distance);
         }
     };
@@ -27,5 +27,5 @@ public enum Direction {
             .orElseThrow(() -> new IllegalArgumentException("wrong direction."));
     }
 
-    abstract void execute(Submarine submarine, int distance);
+    abstract void move(Submarine submarine, int distance);
 }

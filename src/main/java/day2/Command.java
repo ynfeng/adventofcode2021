@@ -40,6 +40,6 @@ public class Command {
     }
 
     public void execute(Submarine submarine) {
-        direction.execute(submarine, distance);
+        direction.move(submarine, distance);
     }
 }
