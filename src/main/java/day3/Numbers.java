@@ -1,6 +1,7 @@
 package day3;
 
 import com.google.common.collect.Lists;
+import java.util.Collections;
 import java.util.List;
 
 public class Numbers {
@@ -14,21 +15,29 @@ public class Numbers {
         return new Numbers(numberList);
     }
 
-    public int mostCommonBit(int positoion) {
-        int zeroCount = 0;
-        int oneCount = 0;
+    public int mostCommonBit(int position) {
+        int zeroCount = countZeroAtBitPosition(position);
+        int oneCount = countOneAtBitPosition(position);
+
+        return oneCount > zeroCount ? 1 : 0;
+    }
+
+    public int countOneAtBitPosition(int position) {
+        int result = 0;
 
         for (Number number : numberList) {
-            int bit = number.bitAt(positoion);
+            int bit = number.bitAt(position);
 
             if (bit == 1) {
-                oneCount++;
-            } else {
-                zeroCount++;
+                result++;
             }
         }
 
-        return oneCount > zeroCount ? 1 : 0;
+        return result;
+    }
+
+    public int countZeroAtBitPosition(int position) {
+        return howManyNumbers() - countOneAtBitPosition(position);
     }
 
     public int numberLength() {
@@ -37,5 +46,43 @@ public class Numbers {
         }
 
         return numberList.get(0).length();
+    }
+
+    protected List<Number> numberList() {
+        return Collections.unmodifiableList(numberList);
+    }
+
+    @Override
+    public String toString() {
+        return "Numbers{" +
+            "numberList=" + numberList +
+            '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Numbers numbers = (Numbers) o;
+
+        return numberList.equals(numbers.numberList);
+    }
+
+    @Override
+    public int hashCode() {
+        return numberList.hashCode();
+    }
+
+    public int howManyNumbers() {
+        return numberList.size();
+    }
+
+    public Number get(int index) {
+        return numberList.get(index);
     }
 }

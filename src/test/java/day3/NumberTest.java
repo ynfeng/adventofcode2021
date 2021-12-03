@@ -16,4 +16,11 @@ class NumberTest {
         assertThat(number.bitAt(3)).isEqualTo(0);
         assertThat(number.bitAt(4)).isEqualTo(1);
     }
+
+    @Test
+    void should_to_int() {
+        Number number = Number.of("10111");
+
+        assertThat(number.toInt()).isEqualTo(23);
+    }
 }
