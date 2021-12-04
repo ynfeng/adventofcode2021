@@ -68,7 +68,7 @@ class CommandTest {
         Command[] commands = Command.create(Datas.fromResourceAsList("day2/data"));
         Arrays.stream(commands).forEach(submarine::executeCommand);
 
-        assertThat(submarine.positionTotal()).isEqualTo(1660158);
+        assertThat(submarine.positionResult()).isEqualTo(1660158);
     }
 
 }

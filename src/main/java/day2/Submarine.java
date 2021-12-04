@@ -11,7 +11,7 @@ public interface Submarine {
 
     int depth();
 
-    int positionTotal();
+    int positionResult();
 
     void executeCommand(Command command);
 }

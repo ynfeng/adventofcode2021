@@ -82,7 +82,7 @@ class RotatableSubmarineTest {
         assertThat(submarine.horizontal()).isEqualTo(15);
         assertThat(submarine.depth()).isEqualTo(60);
 
-        assertThat(submarine.positionTotal()).isEqualTo(900);
+        assertThat(submarine.positionResult()).isEqualTo(900);
     }
 
     @Test
@@ -91,6 +91,6 @@ class RotatableSubmarineTest {
         Command[] commands = Command.create(Datas.fromResourceAsList("day2/data.p2"));
         Arrays.stream(commands).forEach(submarine::executeCommand);
 
-        assertThat(submarine.positionTotal()).isEqualTo(1604592846);
+        assertThat(submarine.positionResult()).isEqualTo(1604592846);
     }
 }

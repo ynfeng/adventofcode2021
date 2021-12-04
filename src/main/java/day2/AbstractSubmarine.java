@@ -43,7 +43,7 @@ public abstract class AbstractSubmarine implements Submarine {
     }
 
     @Override
-    public int positionTotal() {
+    public int positionResult() {
         return position.total();
     }
 }
