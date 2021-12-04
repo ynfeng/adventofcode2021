@@ -10,8 +10,8 @@ public class DiagnosticReport {
     public int gammaRate() {
         int result = 0;
 
-        for (int i = numbers.numberLength() - 1; i >= 0; i--) {
-            int bit = mostCommonBit(numbers, i);
+        for (int i = numbers.eachNumberLength() - 1; i >= 0; i--) {
+            int bit = mostCommon(numbers, i);
 
             result <<= 1;
             result |= bit;
@@ -24,7 +24,7 @@ public class DiagnosticReport {
         int gammaRate = gammaRate();
         int mask = 1;
 
-        for (int i = 0; i < numbers.numberLength() - 1; i++) {
+        for (int i = 0; i < numbers.eachNumberLength() - 1; i++) {
             mask <<= 1;
             mask |= 1;
         }
@@ -32,7 +32,7 @@ public class DiagnosticReport {
         return ~gammaRate & mask;
     }
 
-    public int mostCommonBit(Numbers numbers, int position) {
+    public int mostCommon(Numbers numbers, int position) {
         int numberOfZero = numbers.numOfZeroDigitInBit(position);
         int numberOfOne = numbers.numOfOneDigitInBit(position);
 

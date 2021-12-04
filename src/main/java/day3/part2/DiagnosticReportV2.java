@@ -17,7 +17,7 @@ public class DiagnosticReportV2 {
     private int findNumber(BiFunction<NumbersV2, Integer, Integer> bitCriteriaProvider) {
         NumbersV2 theNumbers = numbers.copy();
 
-        for (int i = theNumbers.numberLength() - 1; i >= 0; i--) {
+        for (int i = theNumbers.eachNumberLength() - 1; i >= 0; i--) {
             final int bitIndex = i;
             int bitCriteria = bitCriteriaProvider.apply(theNumbers, bitIndex);
             theNumbers = theNumbers.filter(it -> it.bitAt(bitIndex) == bitCriteria);

@@ -15,14 +15,14 @@ class NumbersTest {
                 Number.of("11110"),
                 Number.of("10110")));
 
-        assertThat(numbers.numberLength()).isEqualTo(5);
+        assertThat(numbers.eachNumberLength()).isEqualTo(5);
     }
 
     @Test
     void should_0_when_no_numbers() {
         Numbers numbers = Numbers.create(Lists.newArrayList());
 
-        assertThat(numbers.numberLength()).isEqualTo(0);
+        assertThat(numbers.eachNumberLength()).isEqualTo(0);
     }
 
     @Test

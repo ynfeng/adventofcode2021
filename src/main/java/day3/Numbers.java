@@ -33,7 +33,7 @@ public class Numbers {
         return howManyNumbers() - numOfOneDigitInBit(position);
     }
 
-    public int numberLength() {
+    public int eachNumberLength() {
         if (numberList.isEmpty()) {
             return 0;
         }
