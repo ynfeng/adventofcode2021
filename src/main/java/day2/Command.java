@@ -21,6 +21,7 @@ public class Command {
 
         Direction direction = Direction.formString(dir);
         int distance = Integer.valueOf(dis);
+
         return new Command(direction, distance);
     }
 
