@@ -16,17 +16,9 @@ public class Numbers {
     }
 
     public int numOfOneDigitInBit(int position) {
-        int result = 0;
-
-        for (Number number : numberList) {
-            int bit = number.bitAt(position);
-
-            if (bit == 1) {
-                result++;
-            }
-        }
-
-        return result;
+        return (int) numberList.stream()
+            .filter(it -> it.bitAt(position) == 1)
+            .count();
     }
 
     public int numOfZeroDigitInBit(int position) {
