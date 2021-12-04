@@ -15,7 +15,7 @@ public class NumbersV2 extends Numbers {
         return new NumbersV2(numberList);
     }
 
-    public NumbersV2 filter(Predicate<Number> predicate) {
+    public NumbersV2 filterByBitCriteria(Predicate<Number> predicate) {
         List<Number> result = numberList().stream().filter(predicate).collect(Collectors.toList());
 
         return create(result);
@@ -32,6 +32,6 @@ public class NumbersV2 extends Numbers {
     }
 
     public NumbersV2 copy() {
-        return filter(it -> true);
+        return filterByBitCriteria(it -> true);
     }
 }

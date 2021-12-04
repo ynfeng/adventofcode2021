@@ -20,7 +20,7 @@ public class DiagnosticReportV2 {
         for (int i = theNumbers.eachNumberLength() - 1; i >= 0; i--) {
             final int bitIndex = i;
             int bitCriteria = bitCriteriaProvider.apply(theNumbers, bitIndex);
-            theNumbers = theNumbers.filter(it -> it.bitAt(bitIndex) == bitCriteria);
+            theNumbers = theNumbers.filterByBitCriteria(it -> it.bitAt(bitIndex) == bitCriteria);
 
             if (theNumbers.howManyNumbers() == 1) {
                 break;

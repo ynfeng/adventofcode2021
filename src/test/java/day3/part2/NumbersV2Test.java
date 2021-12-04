@@ -13,7 +13,7 @@ class NumbersV2Test extends NumbersTestSupport {
     void should_filter_numbers_by_bit() {
         NumbersV2 numbers = NumbersV2.create(getNumberList());
 
-        numbers = numbers.filter(it -> it.bitAt(4) == 1);
+        numbers = numbers.filterByBitCriteria(it -> it.bitAt(4) == 1);
 
         assertThat(numbers).isEqualTo(NumbersV2.create(Lists.newArrayList(
             Number.of("11110"),
