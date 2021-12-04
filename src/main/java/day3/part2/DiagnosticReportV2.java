@@ -1,6 +1,7 @@
 package day3.part2;
 
 import day3.Number;
+import java.util.function.BiFunction;
 
 public class DiagnosticReportV2 {
     private final NumbersV2 numbers;
@@ -9,73 +10,59 @@ public class DiagnosticReportV2 {
         this.numbers = numbers;
     }
 
-    public int getOxygenGeneratorRating() {
-        NumbersV2 numbers = this.numbers.copy();
+    public int oxygenGeneratorRating() {
+        return findNumber(DiagnosticReportV2::mostCommon);
+    }
 
-        for (int i = numbers.numberLength() - 1; i >= 0; i--) {
+    private int findNumber(BiFunction<NumbersV2, Integer, Integer> bitCriteriaProvider) {
+        NumbersV2 theNumbers = numbers.copy();
+
+        for (int i = theNumbers.numberLength() - 1; i >= 0; i--) {
             final int bitIndex = i;
-            int bit = forOxygenGeneratorRating(numbers, bitIndex);
-            numbers = numbers.filter(it -> it.bitAt(bitIndex) == bit);
+            int bitCriteria = bitCriteriaProvider.apply(theNumbers, bitIndex);
+            theNumbers = theNumbers.filter(it -> it.bitAt(bitIndex) == bitCriteria);
 
-            if (numbers.howManyNumbers() == 1) {
+            if (theNumbers.howManyNumbers() == 1) {
                 break;
             }
         }
 
-        Number number = numbers.get(0);
+        Number number = theNumbers.get(0);
 
         return number.toInt();
     }
 
-    private int forOxygenGeneratorRating(NumbersV2 numbers, int bitIndex) {
-        int oneCount = numbers.countOneAtBitPosition(bitIndex);
-        int zeroCount = numbers.countZeroAtBitPosition(bitIndex);
+    public int co2ScrubberRating() {
+        return findNumber(DiagnosticReportV2::leastCommon);
+    }
 
-        if (oneCount > zeroCount) {
+    private static int mostCommon(NumbersV2 numbers, int bitIndex) {
+        int numberOfOne = numbers.numOfOneDigitInBit(bitIndex);
+        int numberOfZero = numbers.numOfZeroDigitInBit(bitIndex);
+
+        if (numberOfOne > numberOfZero) {
             return 1;
         }
 
-        if (oneCount == zeroCount) {
+        if (numberOfOne == numberOfZero) {
             return 1;
         }
 
         return 0;
     }
 
-    public int getCo2ScrubberRating() {
-        NumbersV2 numbers = this.numbers.copy();
+    private static int leastCommon(NumbersV2 numbers, int bitIndex) {
+        int numberOfOne = numbers.numOfOneDigitInBit(bitIndex);
+        int numberOfZero = numbers.numOfZeroDigitInBit(bitIndex);
 
-        for (int i = numbers.numberLength() - 1; i >= 0; i--) {
-            final int bitIndex = i;
-            int bit = forCo2ScrubberRating(numbers, bitIndex);
-            numbers = numbers.filter(it -> it.bitAt(bitIndex) == bit);
-
-            if (numbers.howManyNumbers() == 1) {
-                break;
-            }
-        }
-
-        Number number = numbers.get(0);
-
-        return number.toInt();
-    }
-
-    private int forCo2ScrubberRating(NumbersV2 numbers, int bitIndex) {
-        int oneCount = numbers.countOneAtBitPosition(bitIndex);
-        int zeroCount = numbers.countZeroAtBitPosition(bitIndex);
-
-        if (oneCount < zeroCount) {
+        if (numberOfOne < numberOfZero) {
             return 1;
-        }
-
-        if (oneCount == zeroCount) {
-            return 0;
         }
 
         return 0;
     }
 
     public int getResult() {
-        return getCo2ScrubberRating() * getOxygenGeneratorRating();
+        return co2ScrubberRating() * oxygenGeneratorRating();
     }
 }

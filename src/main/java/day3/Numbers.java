@@ -15,14 +15,7 @@ public class Numbers {
         return new Numbers(numberList);
     }
 
-    public int mostCommonBit(int position) {
-        int zeroCount = countZeroAtBitPosition(position);
-        int oneCount = countOneAtBitPosition(position);
-
-        return oneCount > zeroCount ? 1 : 0;
-    }
-
-    public int countOneAtBitPosition(int position) {
+    public int numOfOneDigitInBit(int position) {
         int result = 0;
 
         for (Number number : numberList) {
@@ -36,8 +29,8 @@ public class Numbers {
         return result;
     }
 
-    public int countZeroAtBitPosition(int position) {
-        return howManyNumbers() - countOneAtBitPosition(position);
+    public int numOfZeroDigitInBit(int position) {
+        return howManyNumbers() - numOfOneDigitInBit(position);
     }
 
     public int numberLength() {

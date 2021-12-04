@@ -6,7 +6,6 @@ import day3.Number;
 import day3.NumbersTestSupport;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.Datas;
 
@@ -17,7 +16,7 @@ class DiagnosticReportV2Test extends NumbersTestSupport {
         NumbersV2 numbers = NumbersV2.create(getNumberList());
         DiagnosticReportV2 reportV2 = new DiagnosticReportV2(numbers);
 
-        assertThat(reportV2.getOxygenGeneratorRating()).isEqualTo(23);
+        assertThat(reportV2.oxygenGeneratorRating()).isEqualTo(23);
     }
 
     @Test
@@ -25,17 +24,16 @@ class DiagnosticReportV2Test extends NumbersTestSupport {
         NumbersV2 numbers = NumbersV2.create(getNumberList());
         DiagnosticReportV2 reportV2 = new DiagnosticReportV2(numbers);
 
-        assertThat(reportV2.getCo2ScrubberRating()).isEqualTo(10);
+        assertThat(reportV2.co2ScrubberRating()).isEqualTo(10);
     }
 
     @Test
-    @Disabled
     void should_get_result() {
         NumbersV2 numbers = NumbersV2.create(getNumberList());
         DiagnosticReportV2 reportV2 = new DiagnosticReportV2(numbers);
 
-        assertThat(reportV2.getCo2ScrubberRating()).isEqualTo(10);
-        assertThat(reportV2.getOxygenGeneratorRating()).isEqualTo(23);
+        assertThat(reportV2.co2ScrubberRating()).isEqualTo(10);
+        assertThat(reportV2.oxygenGeneratorRating()).isEqualTo(23);
         assertThat(reportV2.getResult()).isEqualTo(230);
     }
 

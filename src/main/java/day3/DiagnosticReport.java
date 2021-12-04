@@ -7,11 +7,11 @@ public class DiagnosticReport {
         this.numbers = numbers;
     }
 
-    public int getGammaRate() {
+    public int gammaRate() {
         int result = 0;
 
         for (int i = numbers.numberLength() - 1; i >= 0; i--) {
-            int bit = numbers.mostCommonBit(i);
+            int bit = mostCommonBit(numbers, i);
 
             result <<= 1;
             result |= bit;
@@ -21,7 +21,7 @@ public class DiagnosticReport {
     }
 
     public int epsilonRate() {
-        int gammaRate = getGammaRate();
+        int gammaRate = gammaRate();
         int mask = 1;
 
         for (int i = 0; i < numbers.numberLength() - 1; i++) {
@@ -32,7 +32,14 @@ public class DiagnosticReport {
         return ~gammaRate & mask;
     }
 
+    public int mostCommonBit(Numbers numbers, int position) {
+        int numberOfZero = numbers.numOfZeroDigitInBit(position);
+        int numberOfOne = numbers.numOfOneDigitInBit(position);
+
+        return numberOfOne > numberOfZero ? 1 : 0;
+    }
+
     public int getResult() {
-        return getGammaRate() * epsilonRate();
+        return gammaRate() * epsilonRate();
     }
 }

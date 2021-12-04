@@ -15,7 +15,7 @@ class DiagnosticReportTest extends NumbersTestSupport {
 
         DiagnosticReport diagnosticReport = new DiagnosticReport(numbers);
 
-        int gammaRate = diagnosticReport.getGammaRate();
+        int gammaRate = diagnosticReport.gammaRate();
 
         assertThat(gammaRate).isEqualTo(22);
     }
