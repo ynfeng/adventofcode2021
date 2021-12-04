@@ -14,6 +14,10 @@ public class DiagnosticReportV2 {
         return findNumber(DiagnosticReportV2::mostCommon);
     }
 
+    public int co2ScrubberRating() {
+        return findNumber(DiagnosticReportV2::leastCommon);
+    }
+
     private int findNumber(BiFunction<NumbersV2, Integer, Integer> bitCriteriaProvider) {
         NumbersV2 theNumbers = numbers.copy();
 
@@ -30,10 +34,6 @@ public class DiagnosticReportV2 {
         Number number = theNumbers.get(0);
 
         return number.toInt();
-    }
-
-    public int co2ScrubberRating() {
-        return findNumber(DiagnosticReportV2::leastCommon);
     }
 
     private static int mostCommon(NumbersV2 numbers, int bitIndex) {
