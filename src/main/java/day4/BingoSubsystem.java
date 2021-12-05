@@ -8,15 +8,19 @@ public class BingoSubsystem {
     private final int[] inputs;
     private final Boards boards;
 
-    public BingoSubsystem(List<String> datas) {
+    public BingoSubsystem(List<String> datas, WinStrategy winStrategy) {
         inputs = Arrays.stream(datas.get(0).split(","))
             .mapToInt(Integer::valueOf)
             .toArray();
 
-        boards = generateBoards(datas);
+        boards = generateBoards(datas, winStrategy);
     }
 
-    private Boards generateBoards(List<String> datas) {
+    public BingoSubsystem(List<String> datas) {
+        this(datas, new FirstWinStrategy());
+    }
+
+    private Boards generateBoards(List<String> datas, WinStrategy winStrategy) {
         List<Board> boards = Lists.newArrayList();
 
         int[][] boardData = new int[5][5];
@@ -42,7 +46,7 @@ public class BingoSubsystem {
             boardData[rowNum++] = cols;
         }
 
-        return Boards.create(boards.toArray(new Board[] {}));
+        return Boards.create(boards.toArray(new Board[] {}), winStrategy);
     }
 
     public int[] inputs() {

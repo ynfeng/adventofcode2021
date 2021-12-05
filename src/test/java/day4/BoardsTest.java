@@ -2,20 +2,21 @@ package day4;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import day4.part2.LastWinStrategy;
 import org.junit.jupiter.api.Test;
 
 class BoardsTest {
 
     @Test
     void should_get_board() {
-        Boards boards = createBoards();
+        Boards boards = createBoards(new FirstWinStrategy());
 
         assertThat(boards.getBoard(0)).isNotNull();
     }
 
     @Test
     void should_call_number() {
-        Boards boards = createBoards();
+        Boards boards = createBoards(new FirstWinStrategy());
 
         boards.call(7, 4, 9, 5, 11);
         BoardComparator.compare(boards.getBoard(0), "day4/b1");
@@ -35,7 +36,7 @@ class BoardsTest {
 
     @Test
     void should_get_score() {
-        Boards boards = createBoards();
+        Boards boards = createBoards(new FirstWinStrategy());
         boards.call(7, 4, 9, 5, 11);
         boards.call(17, 23, 2, 0, 14, 21);
         boards.call(24);
@@ -45,7 +46,7 @@ class BoardsTest {
 
     @Test
     void should_get_score_give_all_input() {
-        Boards boards = createBoards();
+        Boards boards = createBoards(new FirstWinStrategy());
 
         boards.call(7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24, 10, 16, 13, 6, 15, 25, 12, 22, 18, 20, 8, 19, 3, 26, 1);
 
@@ -54,7 +55,7 @@ class BoardsTest {
 
     @Test
     void should_stop_when_one_board_win() {
-        Boards boards = createBoards();
+        Boards boards = createBoards(new FirstWinStrategy());
 
         boards.call(22, 13, 17, 11, 0, 8, 2);
 
@@ -67,7 +68,16 @@ class BoardsTest {
         BoardComparator.compare(board3, "day4/b3-3");
     }
 
-    static Boards createBoards() {
+    @Test
+    void should_last_win() {
+        Boards boards = createBoards(new LastWinStrategy());
+
+        boards.call(7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24, 10, 16, 13, 6, 15, 25, 12, 22, 18, 20, 8, 19, 3, 26, 1);
+
+        assertThat(boards.score()).isEqualTo(1924);
+    }
+
+    static Boards createBoards(WinStrategy winStrategy) {
         return Boards.create(
             new Board[] {
                 Board.create(
@@ -94,7 +104,8 @@ class BoardsTest {
                         {22, 11, 13, 6, 5},
                         {2, 0, 12, 3, 7}
                     })
-            }
+            },
+            winStrategy
         );
     }
 }

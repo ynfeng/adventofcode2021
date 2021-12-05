@@ -2,6 +2,7 @@ package day4;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import day4.part2.LastWinStrategy;
 import org.junit.jupiter.api.Test;
 import utils.Datas;
 
@@ -31,5 +32,16 @@ class BingoSubsystemTest {
         int score = bingoSubsystem.play();
 
         assertThat(score).isEqualTo(8136);
+    }
+
+    @Test
+    void should_get_part2_answer() {
+        BingoSubsystem bingoSubsystem = new BingoSubsystem(
+            Datas.fromResourceAsList("day4/data"),
+            new LastWinStrategy());
+
+        int score = bingoSubsystem.play();
+
+        assertThat(score).isEqualTo(12738);
     }
 }
