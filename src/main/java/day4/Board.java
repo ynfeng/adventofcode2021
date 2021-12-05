@@ -18,31 +18,26 @@ public class Board {
         return new Board(datas);
     }
 
-    public boolean call(int aNumber) {
+    public void call(int aNumber) {
+        if (isWin()) {
+            return;
+        }
+
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 Number number = numbers[i][j];
                 if (number.is(aNumber)) {
                     number.mark();
-
                     if (isWin()) {
-                        return true;
+                        return;
                     }
                 }
             }
         }
-
-        return false;
     }
 
-    public boolean call(int... numbers) {
-        for (int number : numbers) {
-            if (call(number)) {
-                return true;
-            }
-        }
-
-        return false;
+    public void call(int... numbers) {
+        Arrays.stream(numbers).forEach(this::call);
     }
 
     public boolean isMarked(int row, int col) {
