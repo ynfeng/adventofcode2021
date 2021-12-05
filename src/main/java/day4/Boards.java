@@ -1,10 +1,7 @@
 package day4;
 
-import java.util.Optional;
-
 public class Boards {
     private final Board[] boards;
-    private int lastNumber;
     private final WinStrategy winStrategy;
 
     public Boards(Board[] boards) {
@@ -27,10 +24,7 @@ public class Boards {
     public void call(int... numbers) {
         for (int number : numbers) {
             for (Board board : boards) {
-                board.call(number);
-
-                if (winStrategy.canStop(board)) {
-                    lastNumber = number;
+                if (!winStrategy.whetherToContinue(board, number)) {
                     return;
                 }
             }
@@ -40,20 +34,10 @@ public class Boards {
     public int score() {
         int boardSum = winStrategy.getWinBoard(this).map(Board::score).orElse(0);
 
-        return boardSum * lastNumber;
+        return boardSum * winStrategy.winNumber();
     }
 
     public int numOfBoards() {
         return boards.length;
-    }
-
-    public Optional<Board> getFirstWinBoard() {
-        for (Board board : boards) {
-            if (board.isWin()) {
-                return Optional.of(board);
-            }
-        }
-
-        return Optional.empty();
     }
 }
