@@ -16,4 +16,62 @@ public class Segment {
     public static Segment create(int x1, int y1, int x2, int y2) {
         return new Segment(x1, y1, x2, y2);
     }
+
+    public static Segment create(String str) {
+        String[] items = str.split("->");
+
+        int x1 = Integer.valueOf(items[0].split(",")[0].trim());
+        int x2 = Integer.valueOf(items[0].split(",")[1].trim());
+        int y1 = Integer.valueOf(items[1].split(",")[0].trim());
+        int y2 = Integer.valueOf(items[1].split(",")[1].trim());
+
+        return create(x1, x2, y1, y2);
+    }
+
+    public Point[] points() {
+        if (isHorizontal()) {
+            return getHorizontalPoints();
+        }
+
+        if (isVertical()) {
+            return getVertiaclPoints();
+        }
+
+        return null;
+    }
+
+    public Point[] getVertiaclPoints() {
+        int s = Math.min(y1, y2);
+        int e = Math.max(y1, y2);
+
+        Point[] points = new Point[e - s + 1];
+
+        int j = 0;
+        for (int i = s; i <= e; i++) {
+            points[j++] = Point.of(x1, i);
+        }
+
+        return points;
+    }
+
+    public boolean isVertical() {
+        return x1 == x2;
+    }
+
+    public boolean isHorizontal() {
+        return y1 == y2;
+    }
+
+    private Point[] getHorizontalPoints() {
+        int s = Math.min(x1, x2);
+        int e = Math.max(x1, x2);
+        Point[] points = new Point[e - s + 1];
+
+        int j = 0;
+        for (int i = s; i <= e; i++) {
+            points[j++] = Point.of(i, y1);
+        }
+
+        return points;
+    }
 }

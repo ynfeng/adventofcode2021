@@ -10,7 +10,7 @@ public class Point {
     }
 
     public static Point of(int x, int y) {
-        return new Point(x,y);
+        return new Point(x, y);
     }
 
     public int x() {
@@ -19,5 +19,37 @@ public class Point {
 
     public int y() {
         return y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Point point = (Point) o;
+
+        if (x != point.x) {
+            return false;
+        }
+        return y == point.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+            "x=" + x +
+            ", y=" + y +
+            '}';
     }
 }
