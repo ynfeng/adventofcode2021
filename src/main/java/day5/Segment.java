@@ -1,5 +1,8 @@
 package day5;
 
+import com.google.common.collect.Lists;
+import java.util.List;
+
 public class Segment {
     private final int x1;
     private final int y1;
@@ -37,7 +40,30 @@ public class Segment {
             return getVertiaclPoints();
         }
 
-        return null;
+        if (isDiagonal()) {
+            return getDiagonalPoints();
+        }
+
+        return new Point[] {};
+    }
+
+    private Point[] getDiagonalPoints() {
+        List<Point> points = Lists.newArrayList();
+
+        int k = (y2 - y1) / (x2 - x1);
+        int x = Math.min(x1, x2);
+        int targetY = x == x1 ? y2 : y1;
+
+        while (true) {
+            int y = k * (x - x1) + y1;
+            points.add(Point.of(x, y));
+            x++;
+            if (y == targetY) {
+                break;
+            }
+        }
+
+        return points.toArray(new Point[] {});
     }
 
     public Point[] getVertiaclPoints() {
@@ -62,6 +88,12 @@ public class Segment {
         return y1 == y2;
     }
 
+    public boolean isDiagonal() {
+        int k = (y2 - y1) / (x2 - x1);
+
+        return k == 1 || k == -1;
+    }
+
     private Point[] getHorizontalPoints() {
         int s = Math.min(x1, x2);
         int e = Math.max(x1, x2);
@@ -73,5 +105,15 @@ public class Segment {
         }
 
         return points;
+    }
+
+    @Override
+    public String toString() {
+        return "Segment{" +
+            "x1=" + x1 +
+            ", y1=" + y1 +
+            ", x2=" + x2 +
+            ", y2=" + y2 +
+            '}';
     }
 }

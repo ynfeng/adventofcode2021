@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Diagram {
-    private final List<Segment> segments;
+    protected List<Segment> segments;
     private final int[][] map = new int[1000][1000];
 
     public Diagram(Segment[] segs) {
@@ -22,7 +22,7 @@ public class Diagram {
         segments.stream()
             .forEach(segment -> {
                 for (Point point : segment.points()) {
-                    map[point.x()][point.y()]++;
+                    map[point.y()][point.x()]++;
                 }
             });
 
@@ -36,5 +36,15 @@ public class Diagram {
         }
 
         return result;
+    }
+
+    public void draw(int col) {
+        for (int i = 0; i < col; i++) {
+            for (int j = 0; j < col; j++) {
+                String p = map[i][j] == 0 ? "." : String.valueOf(map[i][j]);
+                System.out.print(p);
+            }
+            System.out.println();
+        }
     }
 }
