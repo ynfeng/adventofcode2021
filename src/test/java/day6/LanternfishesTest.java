@@ -45,7 +45,6 @@ class LanternfishesTest {
         assertThat(fishes.howManyFish()).isEqualTo(5934);
     }
 
-
     @Test
     void should_get_answer() {
         List<String> input = Datas.fromResourceAsList("day6/data");
@@ -56,3 +55,4 @@ class LanternfishesTest {
         assertThat(fishes.howManyFish()).isEqualTo(365862);
     }
 }
+
