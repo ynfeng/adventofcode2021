@@ -22,12 +22,17 @@ public class CrabSubmarines {
     }
 
     public int toPosition(int position) {
-        int fuelCost = 0;
+        int totalFuelCost = 0;
 
         for (int i = 0; i < positions.length; i++) {
-            fuelCost += Math.abs(positions[i] - position);
+            int fuelCost = getFuelCost(position, positions[i]);
+            totalFuelCost += fuelCost;
         }
 
-        return fuelCost;
+        return totalFuelCost;
+    }
+
+    protected int getFuelCost(int from, int to) {
+        return Math.abs(from - to);
     }
 }
