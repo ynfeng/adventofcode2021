@@ -20,4 +20,8 @@ public class Digits {
     public int countUniqueNumberOfSegments() {
         return digitList.stream().mapToInt(Digit::countUniqueNumberOfSegments).sum();
     }
+
+    public int sum() {
+        return digitList.stream().mapToInt(Digit::number).sum();
+    }
 }
