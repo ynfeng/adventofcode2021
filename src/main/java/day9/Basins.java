@@ -1,6 +1,5 @@
 package day9;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,12 +17,13 @@ public class Basins {
     public int risk() {
         List<Point> lowPoints = heightmap.lowPoints();
 
-        List<Basin> threeLargestBasin = lowPoints.stream()
+        List<Integer> threeLargestBasinsSize = lowPoints.stream()
             .map(Basin::create)
-            .sorted(Comparator.comparingInt(Basin::area).reversed())
+            .map(Basin::area)
+            .sorted((a, b) -> b - a)
             .limit(3)
             .collect(Collectors.toList());
 
-        return threeLargestBasin.stream().mapToInt(Basin::area).reduce((a, b) -> a * b).getAsInt();
+        return threeLargestBasinsSize.stream().reduce((a, b) -> a * b).get();
     }
 }
