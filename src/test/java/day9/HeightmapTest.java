@@ -26,6 +26,6 @@ class HeightmapTest extends Inputs {
 
         Heightmap heightmap = Heightmap.create(input);
 
-        assertThat(heightmap.riskLevelsSum()).isEqualTo(1698);
+        assertThat(heightmap.riskLevelsSum()).isEqualTo(468);
     }
 }

@@ -1,5 +1,7 @@
 package day9;
 
+import java.util.Optional;
+
 public class Point {
     private final Heightmap heightmap;
     private final int x;
@@ -84,5 +86,109 @@ public class Point {
             ", x=" + x +
             ", y=" + y +
             '}';
+    }
+
+    public int x() {
+        return x;
+    }
+
+    public int y() {
+        return y;
+    }
+
+    public Optional<Point> leftSide() {
+        if (x == 0) {
+            return Optional.empty();
+        }
+
+        Point leftSidePoint = create(heightmap, x - 1, y);
+
+        if (leftSidePoint.height() == 9) {
+            return Optional.empty();
+        }
+
+        if (leftSidePoint.height() <= height()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(leftSidePoint);
+    }
+
+    public Optional<Point> top() {
+        if (y == 0) {
+            return Optional.empty();
+        }
+
+        Point topPoint = create(heightmap, x, y - 1);
+
+        if (topPoint.height() == 9) {
+            return Optional.empty();
+        }
+
+        if (topPoint.height() <= height()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(topPoint);
+    }
+
+    public Optional<Point> rightSide() {
+        if (x == heightmap.width() - 1) {
+            return Optional.empty();
+        }
+
+        Point righSidePoint = create(heightmap, x + 1, y);
+
+        if (righSidePoint.height() == 9) {
+            return Optional.empty();
+        }
+
+        if (righSidePoint.height() <= height()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(righSidePoint);
+    }
+
+    public Optional<Point> bottom() {
+        if (y == heightmap.height() - 1) {
+            return Optional.empty();
+        }
+
+        Point bottomPoint = create(heightmap, x, y + 1);
+
+        if (bottomPoint.height() == 9) {
+            return Optional.empty();
+        }
+
+        if (bottomPoint.height() <= height()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(bottomPoint);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Point point = (Point) o;
+
+        if (x != point.x) {
+            return false;
+        }
+        return y == point.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
     }
 }

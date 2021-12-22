@@ -2,6 +2,7 @@ package day9;
 
 import com.google.common.collect.Lists;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Heightmap {
     private final int[][] heightmapDatas;
@@ -22,7 +23,11 @@ public class Heightmap {
     }
 
     public int countLowPoints() {
-        return (int) points.stream().filter(Point::isLowPoint).count();
+        return lowPoints().size();
+    }
+
+    public List<Point> lowPoints() {
+        return points.stream().filter(Point::isLowPoint).collect(Collectors.toList());
     }
 
     public int getHeight(int x, int y) {
@@ -38,8 +43,8 @@ public class Heightmap {
     }
 
     public int riskLevelsSum() {
-        return points.stream()
-            .filter(Point::isLowPoint)
+        return lowPoints()
+            .stream()
             .mapToInt(Point::riskLevel)
             .sum();
     }
