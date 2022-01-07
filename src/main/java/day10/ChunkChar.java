@@ -11,16 +11,25 @@ public class ChunkChar {
         .put('<', '>')
         .build();
 
-    private static final ImmutableMap<Character, Integer> POINTS = ImmutableMap.<Character, Integer>builder()
+    private static final ImmutableMap<Character, Integer> CORRUPTED_POINTS = ImmutableMap.<Character, Integer>builder()
         .put(')', 3)
         .put(']', 57)
         .put('}', 1197)
         .put('>', 25137)
         .build();
 
+    private static final ImmutableMap<Character, Integer> COMPLETE_POINTS = ImmutableMap.<Character, Integer>builder()
+        .put(')', 1)
+        .put(']', 2)
+        .put('}', 3)
+        .put('>', 4)
+        .build();
+
     public ChunkChar(char ch) {
         this.ch = ch;
     }
+
+    public static ChunkChar EMPTY = of(' ');
 
     public static ChunkChar of(char open) {
         return new ChunkChar(open);
@@ -42,8 +51,8 @@ public class ChunkChar {
         return PAIRS.getOrDefault(ch, ' ').charValue();
     }
 
-    public int points() {
-        return POINTS.getOrDefault(ch, 0);
+    public int corruptedPoints() {
+        return CORRUPTED_POINTS.getOrDefault(ch, 0);
     }
 
     @Override
@@ -63,5 +72,20 @@ public class ChunkChar {
     @Override
     public int hashCode() {
         return ch;
+    }
+
+    public boolean isEmpty() {
+        return ch == ' ';
+    }
+
+    @Override
+    public String toString() {
+        return "ChunkChar{" +
+            "ch=" + ch +
+            '}';
+    }
+
+    public int completePoints() {
+        return COMPLETE_POINTS.getOrDefault(ch, 0);
     }
 }

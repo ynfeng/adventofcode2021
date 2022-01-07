@@ -9,7 +9,7 @@ import utils.Datas;
 class NavigationSubsystemTest {
 
     @Test
-    void should_get_points() {
+    void should_get_corrupted_points() {
         NavigationSubsystem navigationSubsystem = NavigationSubsystem.of(
             "{([(<{}[<>[]}>{[]{[(<()>",
             "[[<[([]))<([[{}[[()]]]",
@@ -18,7 +18,7 @@ class NavigationSubsystemTest {
             "<{([([[(<>()){}]>(<<{{"
         );
 
-        assertThat(navigationSubsystem.points()).isEqualTo(26397);
+        assertThat(navigationSubsystem.corruptPoints()).isEqualTo(26397);
     }
 
     @Test
@@ -26,6 +26,27 @@ class NavigationSubsystemTest {
         List<String> lines = Datas.fromResourceAsList("day10/data");
         NavigationSubsystem navigationSubsystem = NavigationSubsystem.of(lines.toArray(new String[] {}));
 
-        assertThat(navigationSubsystem.points()).isEqualTo(323613);
+        assertThat(navigationSubsystem.corruptPoints()).isEqualTo(323613);
+    }
+
+    @Test
+    void should_get_answer_of_part_2() {
+        List<String> lines = Datas.fromResourceAsList("day10/data");
+        NavigationSubsystem navigationSubsystem = NavigationSubsystem.of(lines.toArray(new String[] {}));
+
+        assertThat(navigationSubsystem.completePoints()).isEqualTo(3103006161L);
+    }
+
+    @Test
+    void should_get_total_complete_points() {
+        NavigationSubsystem navigationSubsystem = NavigationSubsystem.of(
+            "[({(<(())[]>[[{[]{<()<>>",
+            "[(()[<>])]({[<{<<[]>>(",
+            "(((({<>}<{<{<>}{[]{[]{}",
+            "{<[[]]>}<{[{[{[]{()[[[]",
+            "<{([{{}}[<[[[<>{}]]]>[]]"
+        );
+
+        assertThat(navigationSubsystem.completePoints()).isEqualTo(288957);
     }
 }

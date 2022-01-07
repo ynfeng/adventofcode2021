@@ -53,7 +53,19 @@ class ChunkCharTest {
         ">,25137 ",
         "' ', 0",
     })
-    void should_get_points(char ch, int points) {
-        assertThat(ChunkChar.of(ch).points()).isEqualTo(points);
+    void should_get_corrupted_points(char ch, int points) {
+        assertThat(ChunkChar.of(ch).corruptedPoints()).isEqualTo(points);
+    }
+
+    @ParameterizedTest
+    @CsvSource( {
+        "),1",
+        "],2",
+        "},3",
+        ">,4",
+        "(,0"
+    })
+    void should_get_complete_points(char ch, int points) {
+        assertThat(ChunkChar.of(ch).completePoints()).isEqualTo(points);
     }
 }
